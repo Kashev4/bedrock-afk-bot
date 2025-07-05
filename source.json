@@ -1,0 +1,31 @@
+const { createClient } = require('bedrock-protocol');
+const express = require("express");
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get("/", (req, res) => res.send("AFK Bot running"));
+app.listen(port, () => console.log(`Web server live on port ${port}`));
+
+function startBot() {
+  const client = createClient({
+    host: 'moggers-LVVA.aternos.me',
+    port: 38909,
+    username: 'AFK_Bot' // You can change this
+  });
+
+  client.on('join', () => {
+    console.log('✅ Bot joined server.');
+  });
+
+  client.on('disconnect', () => {
+    console.log('🔁 Reconnecting in 10 seconds...');
+    setTimeout(startBot, 10000);
+  });
+
+  client.on('error', err => {
+    console.error('⚠️ Bot error:', err.message);
+  });
+}
+
+startBot();
