@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "bedrock-protocol": "npm:bedrock-protocol@github:PrismarineJS/bedrock-protocol"
+    "bedrock-protocol": "git+https://github.com/PrismarineJS/bedrock-protocol.git"
   }
 }
